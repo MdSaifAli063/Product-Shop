@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Shop Demo</title>
+
+    <!-- Browser address bar color for light/dark -->
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8fafc" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b1220" />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Prevent FOUC: apply stored theme as early as possible -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'light' || t === 'dark') {
+            document.documentElement.setAttribute('data-theme', t);
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="site-header">
+      <div class="container navbar">
+        <a href="#" class="brand">
+          <!-- Simple brand mark -->
+          <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.12"></circle>
+            <path d="M7 13h10l-1.5 5h-7zM8 7h8l1 4H7z" fill="currentColor"></path>
+          </svg>
+          <span>Product Shop</span>
+        </a>
+
+        <nav aria-label="Primary">
+          <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#cart">Cart</a></li>
+            <li><a href="#footer">About</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-actions">
+          <!-- Theme toggle button -->
+          <button id="theme-toggle" class="icon-btn" type="button" aria-pressed="false" aria-label="Toggle theme" title="Toggle theme">🌞</button>
+
+          <form class="nav-search" role="search" aria-label="Site">
+            <label class="sr-only" for="global-search">Search products</label>
+            <input id="global-search" type="search" placeholder="Search products..." />
+          </form>
+          <a href="#cart" class="ghost" aria-label="View cart">
+            Cart <span class="badge" aria-label="items in cart">3</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <h1>Your one-stop shop for awesome stuff</h1>
+        <p>Browse curated products, add to cart, and check out with style. Fully responsive and theme-aware.</p>
+      </div>
+    </section>
+
+    <!-- Main -->
+    <main class="site-main container" id="products">
+      <!-- Toolbar -->
+      <div class="toolbar" aria-label="Product tools">
+        <div class="search">
+          <label class="sr-only" for="toolbar-search">Search products</label>
+          <input id="toolbar-search" type="search" placeholder="Search by name, category..." />
+        </div>
+        <div class="sort">
+          <label class="sr-only" for="sort-select">Sort by</label>
+          <select id="sort-select">
+            <option value="featured">Featured</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="rating-desc">Rating</option>
+          </select>
+        </div>
+        <div class="filters" role="group" aria-label="Filters">
+          <button class="chip active" type="button">All</button>
+          <button class="chip" type="button">New</button>
+          <button class="chip" type="button">Sale</button>
+          <button class="chip" type="button">Apparel</button>
+          <button class="chip" type="button">Gadgets</button>
+          <button class="chip" type="button">Home</button>
+        </div>
+      </div>
+
+      <!-- Layout: Products + Cart Panel -->
+      <div class="layout">
+        <!-- Product list -->
+        <section aria-labelledby="product-heading">
+          <h2 id="product-heading">Products</h2>
+
+          <div id="product-list">
+            <!-- Product card 1 -->
+            <article class="product-card" tabindex="0">
+              <img src="https://picsum.photos/seed/desk/600/400" alt="Minimalist wooden desk" />
+              <div class="product-info">
+                <div class="title-row">
+                  <h3>Minimalist Desk</h3>
+                  <div class="price">$149.00</div>
+                </div>
+                <div class="meta">
+                  <span>Rating: ★★★★☆</span>
+                  <span class="stock in">In stock</span>
+                </div>
+                <div class="actions">
+                  <button class="add-btn" type="button">Add to cart</button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Product card 2 -->
+            <article class="product-card" tabindex="0">
+              <img src="https://picsum.photos/seed/headphones/600/400" alt="Wireless noise-cancelling headphones" />
+              <div class="product-info">
+                <div class="title-row">
+                  <h3>Wireless Headphones</h3>
+                  <div class="price">$89.00</div>
+                </div>
+                <div class="meta">
+                  <span>Rating: ★★★★★</span>
+                  <span class="stock in">In stock</span>
+                </div>
+                <div class="actions">
+                  <button class="add-btn" type="button">Add to cart</button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Product card 3 -->
+            <article class="product-card" tabindex="0">
+              <img src="https://picsum.photos/seed/jacket/600/400" alt="Lightweight waterproof jacket" />
+              <div class="product-info">
+                <div class="title-row">
+                  <h3>Waterproof Jacket</h3>
+                  <div class="price">$119.00</div>
+                </div>
+                <div class="meta">
+                  <span>Rating: ★★★★☆</span>
+                  <span class="stock in">In stock</span>
+                </div>
+                <div class="actions">
+                  <button class="add-btn" type="button">Add to cart</button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Product card 4 (out of stock) -->
+            <article class="product-card" tabindex="0">
+              <img src="https://picsum.photos/seed/lamp/600/400" alt="Modern LED desk lamp" />
+              <div class="product-info">
+                <div class="title-row">
+                  <h3>LED Desk Lamp</h3>
+                  <div class="price">$39.00</div>
+                </div>
+                <div class="meta">
+                  <span>Rating: ★★★☆☆</span>
+                  <span class="stock out">Out of stock</span>
+                </div>
+                <div class="actions">
+                  <button class="add-btn" type="button" disabled>Out of stock</button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Cart panel -->
+        <aside class="cart-panel" id="cart" aria-labelledby="cart-heading">
+          <div class="cart-header">
+            <h2 id="cart-heading">Your Cart</h2>
+            <button class="ghost" type="button">Save for later</button>
+          </div>
+
+          <div id="cart-items" aria-live="polite">
+            <!-- Example empty state (toggle visibility as needed) -->
+            <p id="empty-cart" class="hidden">Your cart is empty. Start adding some products!</p>
+
+            <!-- Cart item 1 -->
+            <div class="cart-item">
+              <img src="https://picsum.photos/seed/desk/96/96" alt="Minimalist Desk thumbnail" />
+              <div class="details">
+                <div class="name">Minimalist Desk</div>
+                <div class="unit">$149.00 each</div>
+              </div>
+              <div class="qty" aria-label="Quantity controls">
+                <button class="icon-btn" type="button" aria-label="Decrease quantity">−</button>
+                <input class="qty-input" type="number" inputmode="numeric" min="1" value="1" aria-label="Quantity" />
+                <button class="icon-btn" type="button" aria-label="Increase quantity">+</button>
+              </div>
+              <div class="line-total">$149.00</div>
+              <button class="icon-btn remove" type="button" aria-label="Remove item">✕</button>
+            </div>
+
+            <!-- Cart item 2 -->
+            <div class="cart-item">
+              <img src="https://picsum.photos/seed/headphones/96/96" alt="Wireless Headphones thumbnail" />
+              <div class="details">
+                <div class="name">Wireless Headphones</div>
+                <div class="unit">$89.00 each</div>
+              </div>
+              <div class="qty" aria-label="Quantity controls">
+                <button class="icon-btn" type="button" aria-label="Decrease quantity">−</button>
+                <input class="qty-input" type="number" inputmode="numeric" min="1" value="2" aria-label="Quantity" />
+                <button class="icon-btn" type="button" aria-label="Increase quantity">+</button>
+              </div>
+              <div class="line-total">$178.00</div>
+              <button class="icon-btn remove" type="button" aria-label="Remove item">✕</button>
+            </div>
+          </div>
+
+          <!-- Promo code -->
+          <form class="promo" action="#" method="get" novalidate>
+            <label class="sr-only" for="promo-code">Promo code</label>
+            <input id="promo-code" type="text" placeholder="Promo code (e.g., SAVE10)" />
+            <button type="button">Apply</button>
+          </form>
+          <p class="promo-feedback">Tip: Try codes like SAVE10 or FREESHIP.</p>
+
+          <!-- Totals -->
+          <section id="cart-total" aria-label="Cart totals">
+            <div class="totals-grid">
+              <div>Subtotal</div><div>$327.00</div>
+              <div>Discount</div><div>− $20.00</div>
+              <div>Tax</div><div>$27.16</div>
+              <div class="grand">Grand Total</div><div class="grand">$334.16</div>
+            </div>
+            <div class="checkout-actions">
+              <button id="checkout-btn" type="button" aria-haspopup="dialog" aria-controls="checkout-modal">Checkout</button>
+            </div>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <!-- Modal (hidden by default) -->
+    <div class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="checkout-title" id="checkout-modal">
+      <div class="modal-backdrop" aria-hidden="true"></div>
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <h3 id="checkout-title" style="margin:0">Checkout</h3>
+          <button class="icon-btn" type="button" aria-label="Close">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="field">
+            <label for="name">Full name</label>
+            <input id="name" type="text" placeholder="Jane Doe" />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="jane@example.com" />
+          </div>
+          <div class="field">
+            <label for="address">Shipping address</label>
+            <input id="address" type="text" placeholder="123 Market St, City, Country" />
+          </div>
+
+          <div class="summary">
+            <div>Items</div><div>$327.00</div>
+            <div>Discount</div><div>− $20.00</div>
+            <div>Tax</div><div>$27.16</div>
+            <div>Total</div><div><strong>$334.16</strong></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="ghost" type="button">Cancel</button>
+          <button class="add-btn" type="button">Confirm Order</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer" id="footer">
+      <div class="container footer-inner">
+        <div class="footer-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Contact</a>
+          <a href="#">Support</a>
+        </div>
+        <div class="footer-copy">© 2025 Shop Demo. All rights reserved.</div>
+      </div>
+    </footer>
+
+    <!-- Theme toggle behavior -->
+    <script src="assets/js/theme-toggle.js" defer></script>
+    <!-- Your app logic -->
+    <script src="script.js"></script>
+  </body>
+</html>
