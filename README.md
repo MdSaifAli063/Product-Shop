@@ -16,6 +16,7 @@ Note: The sample index.html uses the document title “Product Shop” and the v
 - Zero framework dependencies (static site)
 
 ## Demo
+![image](https://github.com/Mdsaif4363/Product-Shop/blob/82282ebb866a68d67d89a6b45a72a4cd5de4a917/Screenshot%202025-08-26%20121356.png)
 
 
 ## Project structure
